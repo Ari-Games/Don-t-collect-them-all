@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
 {
 
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
+    [Header("Character")]
+    [SerializeField] Animator animator = null;
+    [SerializeField] Transform arm;
+    [SerializeField] Transform puppet;
 
     [Header("Movement")]
     [SerializeField] float acceleration = 0.0f;
@@ -39,9 +43,11 @@ public class PlayerController : MonoBehaviour
 
     bool jumpInput;
     bool isJumping;
+    private int animatorGrounded;
+    private int animatorRunningSpeed;
+    private int animatorJump;
 
-    [SerializeField] Transform arm;
-    [SerializeField] Transform puppet;
+
     private bool isFlipped = false;
 
     public ObjectOnLaunch objectToLaunch;
@@ -57,6 +63,9 @@ public class PlayerController : MonoBehaviour
         hardGroundMask = LayerMask.GetMask("Ground Hard");
         launchObjectMask = LayerMask.GetMask("Launch");
 
+        animatorGrounded = Animator.StringToHash("Grounded");
+        animatorRunningSpeed = Animator.StringToHash("RunningSpeed");
+        animatorJump = Animator.StringToHash("Jump");
     }
 
     void Update()
@@ -136,6 +145,7 @@ public class PlayerController : MonoBehaviour
         movementInput = Vector2.zero;
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
         controllerRigidbody.velocity = velocity;
+        animator.SetFloat(animatorRunningSpeed, Math.Abs(velocity.x) / maxSpeed);
     }
 
     private void UpdateLayerMask()
@@ -144,6 +154,8 @@ public class PlayerController : MonoBehaviour
             ground = Ground.Hard;
         else
             ground = Ground.None;
+
+        animator.SetBool(animatorGrounded, ground != Ground.None);
     }
 
     private void UpdateJump()
@@ -153,6 +165,7 @@ public class PlayerController : MonoBehaviour
             controllerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumpInput = false;
             isJumping = true;
+            animator.SetTrigger(animatorJump);
         }
         else if (isJumping && ground != Ground.None)
         {
@@ -163,22 +176,18 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateGravityScale()
     {
-        // Use grounded gravity scale by default.
         var gravityScale = groundedGravityScale;
-
         if (ground == Ground.None)
         {
-            // If not grounded then set the gravity scale according to upwards (jump) or downwards (falling) motion.
+            
             gravityScale = controllerRigidbody.velocity.y > 0.0f ? jumpGravityScale : fallGravityScale;
         }
-
         controllerRigidbody.gravityScale = gravityScale;
     }
 
 
     private void UpdateDirection()
     {
-        // Use scale to flip character depending on direction
         if (controllerRigidbody.velocity.x > minFlipSpeed && isFlipped)
         {
             isFlipped = false;

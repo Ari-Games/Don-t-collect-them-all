@@ -58,7 +58,7 @@ public class SkillController : MonoBehaviour
         if(shootPower >= 1f)
             shootPower = 1f;
         else 
-            shootPower += Time.deltaTime*0.7f;
+            shootPower += Time.deltaTime;
     }
 
     public void BloodShoot()

@@ -63,7 +63,7 @@ public class ObjectOnLaunch : MonoBehaviour
     private void FixedUpdate()
     {
 
-        heightPlayer = launchPos.localPosition.y + launchPos.position.y / 2f;
+        heightPlayer = launchPos.localPosition.y;
         if (canLaunch)
         {
             _rigidBody.isKinematic = true;
