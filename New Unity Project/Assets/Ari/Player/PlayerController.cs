@@ -43,10 +43,13 @@ public class PlayerController : MonoBehaviour
 
     bool jumpInput;
     bool isJumping;
+
+    bool isFlying;
+
     private int animatorGrounded;
     private int animatorRunningSpeed;
     private int animatorJump;
-
+    private int animatorFly;
 
     private bool isFlipped = false;
 
@@ -66,6 +69,7 @@ public class PlayerController : MonoBehaviour
         animatorGrounded = Animator.StringToHash("Grounded");
         animatorRunningSpeed = Animator.StringToHash("RunningSpeed");
         animatorJump = Animator.StringToHash("Jump");
+        animatorFly = Animator.StringToHash("Fly");
     }
 
     void Update()
@@ -94,6 +98,8 @@ public class PlayerController : MonoBehaviour
         if (!isCastingMagic)
             arm.right = isFlipped ? -handDir : handDir;
 
+
+        isFlying = keyboard.eKey.isPressed;
 
         if (keyboard.qKey.isPressed)
         {
@@ -126,6 +132,9 @@ public class PlayerController : MonoBehaviour
             skillController.handDirection = handDir;
             skillController.BloodShoot();
         }
+        
+    
+        
     }
 
     private void FixedUpdate()
@@ -135,6 +144,7 @@ public class PlayerController : MonoBehaviour
         UpdateJump();
         UpdateGravityScale();
         UpdateDirection();
+        UpdateFly();
         prevVelocity = controllerRigidbody.velocity;
     }
 
@@ -145,7 +155,8 @@ public class PlayerController : MonoBehaviour
         movementInput = Vector2.zero;
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
         controllerRigidbody.velocity = velocity;
-        animator.SetFloat(animatorRunningSpeed, Math.Abs(velocity.x) / maxSpeed);
+        if(!isFlying)
+            animator.SetFloat(animatorRunningSpeed, Math.Abs(velocity.x) / maxSpeed);
     }
 
     private void UpdateLayerMask()
@@ -160,26 +171,40 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateJump()
     {
+        if(isFlying)
+            return;
         if (ground == Ground.Hard && jumpInput)
         {
             controllerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumpInput = false;
             isJumping = true;
+           
             animator.SetTrigger(animatorJump);
         }
-        else if (isJumping && ground != Ground.None)
+        else if (isJumping && ground == Ground.Hard)
         {
             isJumping = false;
         }
 
     }
 
+    private void UpdateFly()
+    {
+        if(isFlying)
+        {
+            animator.SetFloat(animatorRunningSpeed,0f);
+            controllerRigidbody.gravityScale = 0;
+            controllerRigidbody.position += Vector2.up*Time.fixedDeltaTime;
+            
+            animator.SetTrigger(animatorFly);
+        }
+    }
+
     private void UpdateGravityScale()
     {
         var gravityScale = groundedGravityScale;
         if (ground == Ground.None)
-        {
-            
+        { 
             gravityScale = controllerRigidbody.velocity.y > 0.0f ? jumpGravityScale : fallGravityScale;
         }
         controllerRigidbody.gravityScale = gravityScale;
