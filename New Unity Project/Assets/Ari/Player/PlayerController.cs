@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Skill")]
     [SerializeField] SkillController skillController;
+    [SerializeField] FlyStatus flyStatus;
+
     private Vector2 movementInput;
     private Rigidbody2D controllerRigidbody;
     private Collider2D controllerCollider;
@@ -190,14 +192,17 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateFly()
     {
-        if(isFlying)
+        if(isFlying && flyStatus.flyBarValue >0)
         {
+
+            flyStatus.IsFlying = true;
             animator.SetFloat(animatorRunningSpeed,0f);
             controllerRigidbody.gravityScale = 0;
             controllerRigidbody.position += Vector2.up*Time.fixedDeltaTime;
-            
             animator.SetTrigger(animatorFly);
         }
+        else
+            flyStatus.IsFlying = false;
     }
 
     private void UpdateGravityScale()
