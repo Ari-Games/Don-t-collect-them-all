@@ -30,3 +30,4 @@ Material:
     - _FogColor: {r: 0.3001513, g: 0.4999675, b: 0.6698113, a: 0.43137255}
     - _TimeOfDay: {r: 1, g: 1, b: 1, a: 0}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

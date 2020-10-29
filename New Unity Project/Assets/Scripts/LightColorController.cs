@@ -17,6 +17,8 @@ public class LightColorController : MonoBehaviour
 
     public float timeValue => currentTime;
 
+    public void SetTime(float value) => time = value;
+
     public void GetSetters()
     {
         setters = GetComponentsInChildren<ColorSetterInterface>();
