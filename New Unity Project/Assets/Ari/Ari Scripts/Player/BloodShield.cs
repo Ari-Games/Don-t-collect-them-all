@@ -17,6 +17,16 @@ public class BloodShield : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] Damageable damageable;
 
+    public float CoolDown
+    {
+        get {return cooldown;}
+    }
+
+    public float Timer
+    {
+        get { return timer; }
+    }
+
     bool isUsing = false;
 
     private void Start() 
