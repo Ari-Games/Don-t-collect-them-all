@@ -11,11 +11,11 @@ public class SkillBar : MonoBehaviour
     [SerializeField] BloodBalls bloodPower;
     [SerializeField] BloodShield bloodShield;
     // Start is called before the first frame update
-    void Start()
-    {
-        //bloodPower = GameObject.FindWithTag("Pool Spot").GetComponent<BloodBalls>(); 
-        //bloodShield = GameObject.FindWithTag("Shield").GetComponent<BloodShield>();
-    }
+    // void Start()
+    // {
+    //     bloodPower = GameObject.FindWithTag("Pool Spot").GetComponent<BloodBalls>(); 
+    //     bloodShield = GameObject.FindWithTag("Shield").GetComponent<BloodShield>();
+    // }
 
     // Update is called once per frame
     void Update()

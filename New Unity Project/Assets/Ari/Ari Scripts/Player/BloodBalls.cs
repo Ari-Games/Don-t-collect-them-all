@@ -12,6 +12,7 @@ public class BloodBalls : MonoBehaviour
         public GameObject gameObject;
         public Transform transform;
         public float lifeTime;
+        public int damage;
         public Ball(GameObject gameObject)
         {
             this.gameObject = gameObject;
@@ -32,6 +33,7 @@ public class BloodBalls : MonoBehaviour
     [SerializeField] LayerMask collisionMask = default;
     
     RaycastHit2D hit;
+    [SerializeField] int damage = 5;
 
     public float ShootPower
     {
@@ -79,6 +81,8 @@ public class BloodBalls : MonoBehaviour
         blood.transform.right = handDirection;
         blood.transform.localScale = new Vector3(transform.localScale.x + shootPower, 
             transform.localScale.y + shootPower, transform.localScale.z);
+        int damagePower = (int)( (int)(shootPower*100)*damage /100);
+        blood.damage = damagePower + damage;
         shootPower = 0;
         blood.lifeTime = 0;
     }
@@ -129,7 +133,11 @@ public class BloodBalls : MonoBehaviour
             hit = Physics2D.Linecast(objStartPos, objToShoot.transform.position, collisionMask.value);
             if(hit && hit.collider.CompareTag("Enemy"))
             {
-                //TODO
+                if(hit.collider.TryGetComponent(out Enemy enemy))
+                {
+                    enemy.PushEnemy(objToShoot.damage);
+                    BloodBallReturn(objToShoot);
+                }
             }
             if(objToShoot.lifeTime > bloodLifeTime)
                 BloodBallReturn(objToShoot);

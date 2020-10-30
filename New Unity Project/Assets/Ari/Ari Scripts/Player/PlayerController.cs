@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
         //=============OTHER WORLD================
         if(GWorld.IsOurWorld())
         {
-            isFlying = keyboard.eKey.isPressed;
+            isFlying = keyboard.shiftKey.isPressed;
 
             if (keyboard.qKey.isPressed)
             {
