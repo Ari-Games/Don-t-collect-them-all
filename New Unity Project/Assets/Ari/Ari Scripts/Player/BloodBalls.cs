@@ -82,7 +82,6 @@ public class BloodBalls : MonoBehaviour
         blood.transform.localScale = new Vector3(transform.localScale.x + shootPower, 
             transform.localScale.y + shootPower, transform.localScale.z);
         int damagePower = (int)( (int)(shootPower*100)*damage /100);
-        print(damagePower);
         blood.damage = damagePower + damage;
         shootPower = 0;
         blood.lifeTime = 0;
@@ -134,7 +133,6 @@ public class BloodBalls : MonoBehaviour
             hit = Physics2D.Linecast(objStartPos, objToShoot.transform.position, collisionMask.value);
             if(hit && hit.collider.CompareTag("Enemy"))
             {
-                print(hit);
                 if(hit.collider.TryGetComponent(out Enemy enemy))
                 {
                     enemy.PushEnemy(objToShoot.damage);
