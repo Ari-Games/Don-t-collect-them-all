@@ -187,7 +187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -235.6, y: 114.1}
+  m_AnchoredPosition: {x: -235.59998, y: 114.100006}
   m_SizeDelta: {x: 471.11603, y: 228.061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4336634947220268105
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerImage: {fileID: 4688736479003555042}
-  shieldImage: {fileID: 4411884209822913261}
+  shieldImage: {fileID: 7792039979401707316}
   bloodPower: {fileID: 0}
   bloodShield: {fileID: 0}
 --- !u!1 &3417290182364150685
@@ -261,7 +261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5208850969116471978
 RectTransform:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -235.58, y: -77.7}
+  m_AnchoredPosition: {x: -235.58002, y: -77.70001}
   m_SizeDelta: {x: 471.15506, y: 155.25998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4522541241479029310
@@ -850,7 +850,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 158.5, y: -106.7}
+  m_AnchoredPosition: {x: 158.5, y: -106.70001}
   m_SizeDelta: {x: 230.10052, y: 170.06938}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6874023004616659120
