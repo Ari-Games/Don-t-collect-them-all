@@ -9,6 +9,9 @@ namespace Assets.Scripts
     public class ChangeStateWorld : MonoBehaviour
     {
         private LightColorController controller = null;
+        [SerializeField] private GameObject explosion = null;
+        [SerializeField] private GameObject ourExplosion = null;
+        [SerializeField] private Transform pointCreate = null;
         private void Awake()
         {
             controller = GetComponent<LightColorController>();
@@ -20,15 +23,29 @@ namespace Assets.Scripts
             {
                 if (!GWorld.IsOurWorld())
                 {
-                    controller.SetTime(0.9f);
-                    GWorld.ChangeState();
+                    Instantiate(explosion, pointCreate.position, Quaternion.identity);
+                    StartCoroutine(ChangeToOther());
                 }
                 else
                 {
-                    controller.SetTime(0);
-                    GWorld.ChangeState();
+                    Instantiate(ourExplosion, pointCreate.position, Quaternion.identity);
+                    StartCoroutine(ChangeToOur());
                 }
             }
+        }
+
+        IEnumerator ChangeToOther()
+        {
+            yield return new WaitForSeconds(6.0f);
+            controller.SetTime(0.9f);
+            GWorld.ChangeState();
+        }
+
+        IEnumerator ChangeToOur()
+        {
+            yield return new WaitForSeconds(6.0f);
+            controller.SetTime(0);
+            GWorld.ChangeState();
         }
     }
 }
