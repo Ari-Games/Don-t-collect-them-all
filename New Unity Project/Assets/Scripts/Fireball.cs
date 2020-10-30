@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class Fireball : MonoBehaviour
 
     [SerializeField] int Speed = 100;
     [SerializeField] GameObject SpriteOfBall;
-    
+    [SerializeField] ParticleSystem Explosion;
     void Start()
     {
         //_rigidbody2D = GetComponent<Rigidbody2D>();
@@ -40,6 +41,15 @@ public class Fireball : MonoBehaviour
         {
             return;
         }
+        Explose();
         print("BOOM");
+    }
+
+    private void Explose()
+    {
+        var expl = Instantiate(Explosion,transform.position,Quaternion.identity);
+        expl.Play();
+        Destroy(expl.gameObject, 5);
+        Destroy(this.gameObject);
     }
 }
