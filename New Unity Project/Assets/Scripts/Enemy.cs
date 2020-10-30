@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
         
     }
 
-    void PushEnemy(int damage)
+    public void PushEnemy(int damage)
     {
         Health -= damage;
         if (Health<=0)
