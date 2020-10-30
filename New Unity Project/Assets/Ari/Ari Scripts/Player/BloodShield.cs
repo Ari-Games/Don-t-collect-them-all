@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Damageable))]
 public class BloodShield : MonoBehaviour
 {
     public bool CanUse
@@ -14,15 +15,13 @@ public class BloodShield : MonoBehaviour
 
     [SerializeField] float cooldown = 4f;
     [SerializeField] float timer;
-    [SerializeField] int shieldHP = 1;
+    [SerializeField] Damageable damageable;
 
-
-    int standartHPValue;
     bool isUsing = false;
 
     private void Start() 
     {
-        standartHPValue = shieldHP;
+        damageable = GetComponent<Damageable>();
         timer = 0f;
         CanUse = true;
     }
@@ -38,27 +37,14 @@ public class BloodShield : MonoBehaviour
         if(isUsing)
         {
             timer+=Time.deltaTime;
-            if(timer >= cooldown || shieldHP <=0)
+            if(timer >= cooldown || damageable.HealthPoint <=0)
             {
                 isUsing = false;
                 CanUse = true;
                 timer = 0f;
-                shieldHP = standartHPValue;
+                damageable.HealthPoint = damageable.StandartHP;
                 this.gameObject.SetActive(false);
             }
         }
     }
-
-    public void Damage()
-    {
-        shieldHP -= 1;
-    }
-
-    // private void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     // if (other.collider.CompareTag("Bullet"))
-    //     // {
-    //     //     Damage();
-    //     // }
-    // }
 }
