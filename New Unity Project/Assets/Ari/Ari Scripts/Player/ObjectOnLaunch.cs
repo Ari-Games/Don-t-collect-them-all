@@ -46,7 +46,7 @@ public class ObjectOnLaunch : MonoBehaviour
     private void Start()
     {
         launchPos = GameObject.FindWithTag("Launch Pos").transform;
-        healhDiv = bar.localScale.x / health;
+        // healhDiv = bar.localScale.x / health;
         // heightPlayer = launchPos.localPosition.y;
         _rigidBody = GetComponent<Rigidbody2D>();
     }
@@ -63,7 +63,7 @@ public class ObjectOnLaunch : MonoBehaviour
     private void FixedUpdate()
     {
 
-        heightPlayer = launchPos.localPosition.y + launchPos.position.y / 2f;
+        heightPlayer = launchPos.localPosition.y;
         if (canLaunch)
         {
             _rigidBody.isKinematic = true;
@@ -91,7 +91,7 @@ public class ObjectOnLaunch : MonoBehaviour
         isReadyLaunch = false;
         if (speed >= 50f && !canLaunch)
         {
-            bar.localScale = new Vector3(bar.localScale.x - healhDiv, bar.localScale.y, 0);
+            // bar.localScale = new Vector3(bar.localScale.x - healhDiv, bar.localScale.y, 0);
             speed = 0f;
             health--;
         }

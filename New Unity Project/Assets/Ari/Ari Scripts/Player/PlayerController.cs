@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
 {
 
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
+    [Header("Character")]
+    [SerializeField] Animator animator = null;
+    [SerializeField] Transform arm;
+    [SerializeField] Transform puppet;
 
     [Header("Movement")]
     [SerializeField] float acceleration = 0.0f;
@@ -27,7 +31,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isCastingMagic = false;
 
     [Header("Skill")]
-    [SerializeField] SkillController skillController;
+    [SerializeField] BloodBalls bloodBallsController;
+    [SerializeField] FlyStatus flyStatus;
+    [SerializeField] BloodShield bloodShield;
+
     private Vector2 movementInput;
     private Rigidbody2D controllerRigidbody;
     private Collider2D controllerCollider;
@@ -40,8 +47,13 @@ public class PlayerController : MonoBehaviour
     bool jumpInput;
     bool isJumping;
 
-    [SerializeField] Transform arm;
-    [SerializeField] Transform puppet;
+    bool isFlying;
+
+    private int animatorGrounded;
+    private int animatorRunningSpeed;
+    private int animatorJump;
+    private int animatorFly;
+
     private bool isFlipped = false;
 
     public ObjectOnLaunch objectToLaunch;
@@ -57,6 +69,13 @@ public class PlayerController : MonoBehaviour
         hardGroundMask = LayerMask.GetMask("Ground Hard");
         launchObjectMask = LayerMask.GetMask("Launch");
 
+        animatorGrounded = Animator.StringToHash("Grounded");
+        animatorRunningSpeed = Animator.StringToHash("RunningSpeed");
+        animatorJump = Animator.StringToHash("Jump");
+        animatorFly = Animator.StringToHash("Fly");
+
+        bloodShield = GameObject.FindWithTag("Shield").GetComponent<BloodShield>();
+        bloodShield.gameObject.SetActive(false);
     }
 
     void Update()
@@ -86,6 +105,8 @@ public class PlayerController : MonoBehaviour
             arm.right = isFlipped ? -handDir : handDir;
 
 
+        isFlying = keyboard.eKey.isPressed;
+
         if (keyboard.qKey.isPressed)
         {
             if (objectToLaunch == null)
@@ -110,13 +131,20 @@ public class PlayerController : MonoBehaviour
 
         if(mouse.leftButton.isPressed)
         {
-            skillController.IncreasePower();
+            bloodBallsController.IncreasePower();
         }
         if(mouse.leftButton.wasReleasedThisFrame)
         {
-            skillController.handDirection = handDir;
-            skillController.BloodShoot();
+            bloodBallsController.handDirection = handDir;
+            bloodBallsController.BloodShoot();
         }
+        
+        if(mouse.rightButton.wasPressedThisFrame)
+        {
+            bloodShield.gameObject.SetActive(true);
+            bloodShield.IsInput = true;
+        }
+        
     }
 
     private void FixedUpdate()
@@ -126,6 +154,7 @@ public class PlayerController : MonoBehaviour
         UpdateJump();
         UpdateGravityScale();
         UpdateDirection();
+        UpdateFly();
         prevVelocity = controllerRigidbody.velocity;
     }
 
@@ -136,6 +165,8 @@ public class PlayerController : MonoBehaviour
         movementInput = Vector2.zero;
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
         controllerRigidbody.velocity = velocity;
+        if(!isFlying)
+            animator.SetFloat(animatorRunningSpeed, Math.Abs(velocity.x) / maxSpeed);
     }
 
     private void UpdateLayerMask()
@@ -144,41 +175,57 @@ public class PlayerController : MonoBehaviour
             ground = Ground.Hard;
         else
             ground = Ground.None;
+
+        animator.SetBool(animatorGrounded, ground != Ground.None);
     }
 
     private void UpdateJump()
     {
+        if(isFlying)
+            return;
         if (ground == Ground.Hard && jumpInput)
         {
             controllerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumpInput = false;
             isJumping = true;
+           
+            animator.SetTrigger(animatorJump);
         }
-        else if (isJumping && ground != Ground.None)
+        else if (isJumping && ground == Ground.Hard)
         {
             isJumping = false;
         }
 
     }
 
+    private void UpdateFly()
+    {
+        if(isFlying && flyStatus.flyBarValue >0)
+        {
+
+            flyStatus.IsFlying = true;
+            animator.SetFloat(animatorRunningSpeed,0f);
+            controllerRigidbody.gravityScale = 0;
+            controllerRigidbody.position += Vector2.up*Time.fixedDeltaTime;
+            animator.SetTrigger(animatorFly);
+        }
+        else
+            flyStatus.IsFlying = false;
+    }
+
     private void UpdateGravityScale()
     {
-        // Use grounded gravity scale by default.
         var gravityScale = groundedGravityScale;
-
         if (ground == Ground.None)
-        {
-            // If not grounded then set the gravity scale according to upwards (jump) or downwards (falling) motion.
+        { 
             gravityScale = controllerRigidbody.velocity.y > 0.0f ? jumpGravityScale : fallGravityScale;
         }
-
         controllerRigidbody.gravityScale = gravityScale;
     }
 
 
     private void UpdateDirection()
     {
-        // Use scale to flip character depending on direction
         if (controllerRigidbody.velocity.x > minFlipSpeed && isFlipped)
         {
             isFlipped = false;

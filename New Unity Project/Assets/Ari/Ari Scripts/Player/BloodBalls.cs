@@ -2,8 +2,9 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 
-public class SkillController : MonoBehaviour 
+public class BloodBalls : MonoBehaviour 
 {
 
     public class Ball
@@ -29,6 +30,10 @@ public class SkillController : MonoBehaviour
 
     [SerializeField] Transform handSpot;
     [SerializeField] Transform poolSpot;
+    [SerializeField] LayerMask collisionMask = default;
+    
+    RaycastHit2D hit;
+
     
     Vector3 scaleBefore;
 
@@ -58,11 +63,14 @@ public class SkillController : MonoBehaviour
         if(shootPower >= 1f)
             shootPower = 1f;
         else 
-            shootPower += Time.deltaTime*0.7f;
+            shootPower += Time.deltaTime;
     }
 
     public void BloodShoot()
     {
+
+        if (Camera.main.GetComponent<CinemachineImpulseSource>())
+            Camera.main.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
 
         Ball blood = GetFromPool();
         blood.gameObject.SetActive(true);
@@ -115,8 +123,15 @@ public class SkillController : MonoBehaviour
         for(int i = bloodBallsUse.Count - 1; i >= 0; i--)
         {
             Ball objToShoot = bloodBallsUse[i];
+            Vector3 objStartPos = objToShoot.transform.position;
             objToShoot.transform.position += objToShoot.transform.right.normalized*Time.deltaTime*bloodSpeed;
             objToShoot.lifeTime += Time.deltaTime;
+
+            hit = Physics2D.Linecast(objStartPos, objToShoot.transform.position, collisionMask.value);
+            if(hit && hit.collider.CompareTag("Enemy"))
+            {
+                //TODO
+            }
             if(objToShoot.lifeTime > bloodLifeTime)
                 BloodBallReturn(objToShoot);
         }
