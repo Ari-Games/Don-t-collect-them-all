@@ -14,12 +14,12 @@ public class Damageable : MonoBehaviour
         get { return healthPoint; }
         set 
         {
+            
+            healthPoint = value;
             if (healthPoint <= 0)
             {
                 Death();
             }
-            healthPoint = value;
-            
         }
     }
 
