@@ -108,7 +108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2529580825159890257
 Transform:
   m_ObjectHideFlags: 0
@@ -589,6 +589,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Particles_ArtefactEmbers
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212817435513179474, guid: 72187e60144e88d40b58abe6f550a09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5212817435513179479, guid: 72187e60144e88d40b58abe6f550a09a,
         type: 3}

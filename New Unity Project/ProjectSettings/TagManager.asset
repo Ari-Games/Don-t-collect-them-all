@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Launch Pos
+  - Pool Spot
+  - Shield
+  - Mushroom
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - 
   - Ground Soft
   - Ground Hard
-  - Enemy
+  - Launch
   - 
   - 
   - 
