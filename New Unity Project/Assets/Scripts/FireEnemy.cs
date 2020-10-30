@@ -22,7 +22,7 @@ public class FireEnemy : Enemy
     }
     private void FixedUpdate()
     {
-        if ((_target.transform.position - transform.position).magnitude >= 5)
+        if (_target && (_target.transform.position - transform.position).magnitude >= 5)
         {
             var direction = (_target.transform.position - transform.position).normalized;
             _rigidbody2D.MovePosition(transform.position + direction*Velocity*Time.fixedDeltaTime);
