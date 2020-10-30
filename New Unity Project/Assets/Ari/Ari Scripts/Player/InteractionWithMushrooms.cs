@@ -20,7 +20,33 @@ namespace Assets.Ari.Ari_Scripts.Player
                     Destroy(collision.gameObject);
                 }
             }
+            if (collision.gameObject.CompareTag("HealthMashroom") && Input.GetKeyDown(KeyCode.E))
+            {
+                Damageable playerHealth;
+                if (TryGetComponent<Damageable>(out playerHealth))
+                {
+                    playerHealth.Damage(-10);
+                }
+            }
+            if (collision.gameObject.CompareTag("DeathMashroom") && Input.GetKeyDown(KeyCode.E))
+            {
+                Damageable playerHealth;
+                if (TryGetComponent<Damageable>(out playerHealth))
+                {
+                    playerHealth.Damage(10);
+                }
+            }
+            if (collision.gameObject.CompareTag("DeathMashroom") && Input.GetKeyDown(KeyCode.E))
+            {
+                Damageable playerHealth;
+                if (TryGetComponent<Damageable>(out playerHealth))
+                {
+                    playerHealth.Damage(10);
+                }
+            }
+
         }
+
         
     }
 }
