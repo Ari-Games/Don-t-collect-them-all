@@ -32,13 +32,10 @@ public class FireEnemy : Enemy
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision +" "+ collision.tag);
         if (collision.tag!="Player")
         {
             return;
         }
-        print("fireball");
-
         _target = collision.gameObject;
         _shootTrigger = true;
 

@@ -40,7 +40,17 @@ public class Fireball : MonoBehaviour
             return;
         }
         Explose();
+        TakeHealth(collision.gameObject);
         
+    }
+
+    private void TakeHealth(GameObject player)
+    {
+        var pl = player.GetComponent<Damageable>();
+        if (pl!=null)
+        {
+            pl.Damage(10);
+        }
     }
 
     private void Explose()
