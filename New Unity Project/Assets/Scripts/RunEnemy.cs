@@ -13,6 +13,7 @@ public class RunEnemy : Enemy
     [SerializeField] float ForDamageDistance = 1;
     [Header("Enemy Settings")]
     [SerializeField] float Velocity = 2f;
+    
     void Start()
     {
         timeOf = Time.time;
