@@ -5,14 +5,22 @@ using UnityEngine;
 public class Damageable : MonoBehaviour
 {
 
-    [SerializeField] int healthPoint = 5;
+    [SerializeField] int healthPoint = 100;
     int standartHPValue;
 
 
     public int HealthPoint
     {
         get { return healthPoint; }
-        set { healthPoint = value; }
+        set 
+        {
+            
+            healthPoint = value;
+            if (healthPoint <= 0)
+            {
+                Death();
+            }
+        }
     }
 
     public int StandartHP
@@ -25,6 +33,10 @@ public class Damageable : MonoBehaviour
 
     public void Damage(int damage)
     {
-        healthPoint -= damage;
+        HealthPoint -= damage;
+    }
+    public void Death()
+    {
+        print("You are dead!");
     }
 }

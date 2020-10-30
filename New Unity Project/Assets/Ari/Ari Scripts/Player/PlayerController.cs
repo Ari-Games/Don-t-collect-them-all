@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,7 +35,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] BloodBalls bloodBallsController;
     [SerializeField] FlyStatus flyStatus;
     [SerializeField] BloodShield bloodShield;
+    [SerializeField] float shootTime = 0.5f;
 
+    float timer = 0f;
     private Vector2 movementInput;
     private Rigidbody2D controllerRigidbody;
     private Collider2D controllerCollider;
@@ -64,6 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         mainCamera = Camera.main;
         CanMove = true;
+        timer = shootTime;
         controllerRigidbody = GetComponent<Rigidbody2D>();
         controllerCollider = GetComponent<Collider2D>();
         hardGroundMask = LayerMask.GetMask("Ground Hard");
@@ -104,47 +108,52 @@ public class PlayerController : MonoBehaviour
         if (!isCastingMagic)
             arm.right = isFlipped ? -handDir : handDir;
 
-
-        isFlying = keyboard.eKey.isPressed;
-
-        if (keyboard.qKey.isPressed)
+        //=============OTHER WORLD================
+        if(GWorld.IsOurWorld())
         {
-            if (objectToLaunch == null)
+            isFlying = keyboard.eKey.isPressed;
+
+            if (keyboard.qKey.isPressed)
             {
-                Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, 3f, launchObjectMask);
-                var obj = FindClosest(objects);
-                if (obj)
-                    objectToLaunch = obj.GetComponent<ObjectOnLaunch>();
+                if (objectToLaunch == null)
+                {
+                    Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, 3f, launchObjectMask);
+                    var obj = FindClosest(objects);
+                    if (obj)
+                        objectToLaunch = obj.GetComponent<ObjectOnLaunch>();
+                }
+                else
+                {
+
+                    objectToLaunch.CanLaunch = true;
+                    objectToLaunch.LaunchDir = handDir.normalized;
+                }
             }
-            else
+            else if (objectToLaunch)
             {
+                objectToLaunch.CanLaunch = false;
+                objectToLaunch = null;
+            }
 
-                objectToLaunch.CanLaunch = true;
-                objectToLaunch.LaunchDir = handDir.normalized;
+            timer = Mathf.Clamp01(timer);
+            timer +=Time.deltaTime;
+            if(mouse.leftButton.isPressed && timer >= shootTime)
+            {
+                bloodBallsController.IncreasePower();
+            }
+            if(mouse.leftButton.wasReleasedThisFrame && timer >= shootTime)
+            {
+                timer = 0;
+                bloodBallsController.handDirection = handDir;
+                bloodBallsController.BloodShoot();
+            }
+            
+            if(mouse.rightButton.wasPressedThisFrame)
+            {
+                bloodShield.gameObject.SetActive(true);
+                bloodShield.IsInput = true;
             }
         }
-        else if (objectToLaunch)
-        {
-            objectToLaunch.CanLaunch = false;
-            objectToLaunch = null;
-        }
-
-        if(mouse.leftButton.isPressed)
-        {
-            bloodBallsController.IncreasePower();
-        }
-        if(mouse.leftButton.wasReleasedThisFrame)
-        {
-            bloodBallsController.handDirection = handDir;
-            bloodBallsController.BloodShoot();
-        }
-        
-        if(mouse.rightButton.wasPressedThisFrame)
-        {
-            bloodShield.gameObject.SetActive(true);
-            bloodShield.IsInput = true;
-        }
-        
     }
 
     private void FixedUpdate()

@@ -22,7 +22,6 @@ public class BloodBalls : MonoBehaviour
     [SerializeField] float shootPower;
     [SerializeField] float bloodSpeed = 2f;
     [SerializeField] float bloodLifeTime = 3f;
-
     List<Ball> bloodBallsPool = new List<Ball>();
     List<Ball> bloodBallsUse = new List<Ball>();
 
@@ -34,7 +33,10 @@ public class BloodBalls : MonoBehaviour
     
     RaycastHit2D hit;
 
-    
+    public float ShootPower
+    {
+        get { return shootPower;}
+    }
     Vector3 scaleBefore;
 
     public Vector3 handDirection;
@@ -47,7 +49,6 @@ public class BloodBalls : MonoBehaviour
     private void Start() 
     {
         scaleBefore = bloodPrefab.transform.localScale;
-
         poolSpot = GameObject.FindWithTag("Pool Spot").transform;
         shootPower = 0;
         ShootPressed = false;
@@ -80,8 +81,6 @@ public class BloodBalls : MonoBehaviour
             transform.localScale.y + shootPower, transform.localScale.z);
         shootPower = 0;
         blood.lifeTime = 0;
-
-    
     }
 
 
