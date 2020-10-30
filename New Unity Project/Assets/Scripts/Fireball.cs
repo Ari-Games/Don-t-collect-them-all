@@ -9,18 +9,17 @@ public class Fireball : MonoBehaviour
     Rigidbody2D _rigidbody2D;
     Vector3 _direction;
     int _force = 0;
-
+    Vector3 _initPosition;
     [SerializeField] int Speed = 100;
     [SerializeField] GameObject SpriteOfBall;
     [SerializeField] ParticleSystem Explosion;
     void Start()
     {
-        //_rigidbody2D = GetComponent<Rigidbody2D>();
-       
+        _initPosition = transform.position;
     }
     private void FixedUpdate()
     {
-        //_rigidbody2D.AddForce(_direction.normalized * _force);
+        
     }
     public void DirectTo(Vector3 direction,int force)
     {
@@ -30,10 +29,9 @@ public class Fireball : MonoBehaviour
     }
     void Update()
     {
-        //transform.LookAt(_direction * Time.deltaTime);
+
         transform.Translate(_direction.normalized*Speed * Time.deltaTime);
-        SpriteOfBall.transform.LookAt(_direction);
-        
+        SpriteOfBall.transform.LookAt(_initPosition+_direction);        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,7 +40,7 @@ public class Fireball : MonoBehaviour
             return;
         }
         Explose();
-        print("BOOM");
+        
     }
 
     private void Explose()

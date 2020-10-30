@@ -4848,6 +4848,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b869d190f8cea54991a8b073a378c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 100
+  SpriteOfBall: {fileID: 0}
+  Explosion: {fileID: 0}
 --- !u!1 &4035573483930513261
 GameObject:
   m_ObjectHideFlags: 0

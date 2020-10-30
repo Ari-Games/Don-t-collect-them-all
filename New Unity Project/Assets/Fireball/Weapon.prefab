@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   SpriteOfBall: {fileID: 2280702143499129182}
+  Explosion: {fileID: 1230548590295616262, guid: dbcf8dfc7d4164641b7837f65a3ef0f3,
+    type: 3}
 --- !u!61 &8056994934455404086
 BoxCollider2D:
   m_ObjectHideFlags: 0
