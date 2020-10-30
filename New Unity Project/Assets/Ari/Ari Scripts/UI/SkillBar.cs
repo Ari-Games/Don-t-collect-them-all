@@ -13,8 +13,8 @@ public class SkillBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bloodPower = GameObject.FindWithTag("Pool Spot").GetComponent<BloodBalls>(); 
-        bloodShield = GameObject.FindWithTag("Shield").GetComponent<BloodShield>();
+        //bloodPower = GameObject.FindWithTag("Pool Spot").GetComponent<BloodBalls>(); 
+        //bloodShield = GameObject.FindWithTag("Shield").GetComponent<BloodShield>();
     }
 
     // Update is called once per frame

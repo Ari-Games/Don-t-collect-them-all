@@ -14,8 +14,11 @@ namespace Assets.Ari.Ari_Scripts.Player
         {
             if (collision.gameObject.CompareTag(mushroomTag))
             {
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.E))
+                {
                     world.Change();
+                    Destroy(collision.gameObject);
+                }
             }
         }
         
