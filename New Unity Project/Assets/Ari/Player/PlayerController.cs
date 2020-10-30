@@ -31,8 +31,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isCastingMagic = false;
 
     [Header("Skill")]
-    [SerializeField] SkillController skillController;
+    [SerializeField] BloodBalls bloodBallsController;
     [SerializeField] FlyStatus flyStatus;
+    [SerializeField] BloodShield bloodShield;
 
     private Vector2 movementInput;
     private Rigidbody2D controllerRigidbody;
@@ -72,6 +73,9 @@ public class PlayerController : MonoBehaviour
         animatorRunningSpeed = Animator.StringToHash("RunningSpeed");
         animatorJump = Animator.StringToHash("Jump");
         animatorFly = Animator.StringToHash("Fly");
+
+        bloodShield = GameObject.FindWithTag("Shield").GetComponent<BloodShield>();
+        bloodShield.gameObject.SetActive(false);
     }
 
     void Update()
@@ -127,15 +131,19 @@ public class PlayerController : MonoBehaviour
 
         if(mouse.leftButton.isPressed)
         {
-            skillController.IncreasePower();
+            bloodBallsController.IncreasePower();
         }
         if(mouse.leftButton.wasReleasedThisFrame)
         {
-            skillController.handDirection = handDir;
-            skillController.BloodShoot();
+            bloodBallsController.handDirection = handDir;
+            bloodBallsController.BloodShoot();
         }
         
-    
+        if(mouse.rightButton.wasPressedThisFrame)
+        {
+            bloodShield.gameObject.SetActive(true);
+            bloodShield.IsInput = true;
+        }
         
     }
 

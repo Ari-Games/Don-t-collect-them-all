@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 
-public class SkillController : MonoBehaviour 
+public class BloodBalls : MonoBehaviour 
 {
 
     public class Ball
