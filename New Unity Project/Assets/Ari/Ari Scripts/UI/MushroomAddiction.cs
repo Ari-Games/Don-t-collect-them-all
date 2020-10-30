@@ -32,6 +32,6 @@ public class MushroomAddiction : MonoBehaviour
 
     public void AddAddiction(float value)
     {
-        addictionImage.fillAmount = value;
+        addictionImage.fillAmount += value;
     }
 }
