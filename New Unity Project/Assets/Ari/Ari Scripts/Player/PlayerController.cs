@@ -61,10 +61,13 @@ public class PlayerController : MonoBehaviour
 
     public ObjectOnLaunch objectToLaunch;
 
+    private InteractionWithMushrooms mushroomAddiction;
 
     public bool CanMove { get; set; }
     void Start()
     {
+        mushroomAddiction = GetComponent<InteractionWithMushrooms>();
+        mushroomAddiction.mushroomEat += StayHere; 
         mainCamera = Camera.main;
         CanMove = true;
         timer = shootTime;
@@ -264,5 +267,10 @@ public class PlayerController : MonoBehaviour
         }
 
         return obj;
+    }
+
+    public void StayHere()
+    {
+        animator.SetFloat(animatorRunningSpeed,0);
     }
 }
