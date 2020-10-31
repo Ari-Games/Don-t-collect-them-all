@@ -36,7 +36,7 @@ public class InteractionWithMushrooms : MonoBehaviour
             Damageable playerHealth;
             if (TryGetComponent<Damageable>(out playerHealth))
             {
-                playerHealth.Damage(-25);
+                playerHealth.Damage(-30);
                 Destroy(collision.gameObject);
             }
         }
@@ -51,7 +51,7 @@ public class InteractionWithMushrooms : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("EnergyMushroom") && Input.GetKeyDown(KeyCode.E))
         {
-            mushroomAddiction?.AddAddiction(0.1f);
+            mushroomAddiction?.AddAddiction(0.2f);
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("EnergyTakeMushroom") && Input.GetKeyDown(KeyCode.E))

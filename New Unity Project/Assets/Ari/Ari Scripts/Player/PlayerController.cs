@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
 
     bool isFlying;
 
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip shotSFX;
+
     private int animatorGrounded;
     private int animatorRunningSpeed;
     private int animatorJump;
@@ -149,6 +152,7 @@ public class PlayerController : MonoBehaviour
                 timer = 0;
                 bloodBallsController.handDirection = handDir;
                 bloodBallsController.BloodShoot();
+                audio.PlayOneShot(shotSFX);
             }
             
             if(mouse.rightButton.wasPressedThisFrame)

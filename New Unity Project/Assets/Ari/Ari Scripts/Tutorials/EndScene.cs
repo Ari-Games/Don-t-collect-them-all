@@ -8,13 +8,11 @@ public class EndScene : MonoBehaviour
 {
     [SerializeField] private GameObject book;
     [SerializeField] private Text bookText;
-    [SerializeField] private string endText;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             book.SetActive(true);
-            bookText.text = endText;
             StartCoroutine(End());
         }
     }

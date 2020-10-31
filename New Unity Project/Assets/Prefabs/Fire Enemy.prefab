@@ -47,13 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c660fc38327b864683f8c558a2f31e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 15
   FireBall: {fileID: 920880201809729863, guid: 4bc2ad50c36392f4aa385ade7c81034f, type: 3}
   frequency: 1
   ActivateDistance: 10
   Velocity: 2
   _target: {fileID: 0}
-  explosionPrefab: {fileID: 112633508660392347, guid: 177b3d0d9eef7f84d8bf4fb8e610600f,
+  explosionPrefab: {fileID: 198331837414692640, guid: 36434e6052daf1b4da5e275207f83df6,
     type: 3}
 --- !u!50 &2529296138199367562
 Rigidbody2D:

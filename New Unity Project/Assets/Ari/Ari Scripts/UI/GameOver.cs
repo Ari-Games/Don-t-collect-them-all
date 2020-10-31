@@ -17,6 +17,7 @@ public class GameOver : MonoBehaviour
     {
         Time.timeScale = 1;
         GWorld.Reset();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
+
 }
