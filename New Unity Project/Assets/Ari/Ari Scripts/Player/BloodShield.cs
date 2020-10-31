@@ -43,6 +43,8 @@ public class BloodShield : MonoBehaviour
             CanUse = false;
             isUsing = true;
             IsInput = false;
+            GetComponent<Collider2D>().enabled = true;
+            GetComponent<SpriteRenderer>().enabled = true;
         }
         if(isUsing)
         {
@@ -53,10 +55,14 @@ public class BloodShield : MonoBehaviour
                 CanUse = true;
                 timer = 0f;
                 damageable.HealthPoint = damageable.StandartHP;
-                this.gameObject.SetActive(false);
+                GetComponent<Collider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().enabled = false;
             }
             if (damageable.HealthPoint <= 0)
-                this.gameObject.SetActive(false);
+            {
+                GetComponent<Collider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().enabled = false;
+            }
         }
     }
 }

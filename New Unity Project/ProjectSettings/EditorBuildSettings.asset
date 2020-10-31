@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Lost Crypt/Scenes/Main.unity
     guid: a2b58d8c2e473104380da39b8eb2a7e5
+  - enabled: 1
+    path: Assets/Scenes/TutorialLevel 1.unity
+    guid: 62813a6e26d82244b8adc8e2214c51ec
   m_configObjects: {}

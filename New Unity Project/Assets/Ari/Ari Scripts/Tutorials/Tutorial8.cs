@@ -24,6 +24,8 @@ public class Tutorial8 : MonoBehaviour
         {
             block.SetActive(false);
             mashroom.SetActive(true);
+            Destroy(key.gameObject);
+            Destroy(gameObject);
         }
     }
 }

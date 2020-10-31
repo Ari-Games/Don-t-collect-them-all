@@ -16,5 +16,6 @@ public class IsCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
             IsTrigger = true;
+        Debug.Log("Good");
     }
 }
