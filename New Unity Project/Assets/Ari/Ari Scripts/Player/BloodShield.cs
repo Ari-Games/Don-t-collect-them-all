@@ -63,6 +63,10 @@ public class BloodShield : MonoBehaviour
                 GetComponent<Collider2D>().enabled = false;
                 GetComponent<SpriteRenderer>().enabled = false;
             }
+            if(damageable.HealthPoint <= 0)
+            {
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }
