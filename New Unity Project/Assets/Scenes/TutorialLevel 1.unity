@@ -476,6 +476,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7096554454525093426, guid: ca1758815a61c4b418b61b735b87076f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 287.89996
+      objectReference: {fileID: 0}
     - target: {fileID: 7398238638143254719, guid: ca1758815a61c4b418b61b735b87076f,
         type: 3}
       propertyPath: m_FontData.m_Font
@@ -8932,17 +8937,17 @@ PrefabInstance:
     - target: {fileID: 6372339726509719846, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[2].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339726509719846, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[3].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339726509719846, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[4].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339726509719847, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
@@ -9042,7 +9047,7 @@ PrefabInstance:
     - target: {fileID: 6372339727032943130, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[0].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339727032943131, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
@@ -9077,7 +9082,7 @@ PrefabInstance:
     - target: {fileID: 6372339727176229870, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[1].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339727176229871, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
