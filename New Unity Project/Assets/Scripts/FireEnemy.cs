@@ -25,24 +25,7 @@ public class FireEnemy : Enemy
     }
     private void FixedUpdate()
     {
-        if (_shootTrigger &&  _target && (_target.transform.position - transform.position).magnitude >= 5 )
-        {
-            var direction = (_target.transform.position - transform.position).normalized;
-            if (direction.x < 0)
-            {
-                var rot = transform.rotation.eulerAngles;
-                rot.y = 0;
-                transform.SetPositionAndRotation(transform.position, Quaternion.Euler(rot));                
-            }
-            else
-            {
-                var rot = transform.rotation.eulerAngles;
-                rot.y = -180;
-                transform.SetPositionAndRotation(transform.position, Quaternion.Euler(rot));
-            }
-            _rigidbody2D.MovePosition(transform.position + direction*Velocity*Time.fixedDeltaTime);
-        }
-        
+        MoveLogic();
     }
     
     
@@ -55,14 +38,31 @@ public class FireEnemy : Enemy
         if (_shootTrigger && (timeOf)>= frequency)
         {
             ShootLogic();
-            MoveLogic();
+            
         }
         timeOf += Time.deltaTime;
     }
 
     private void MoveLogic()
     {
-        
+        var direction = (_target.transform.position - transform.position).normalized;
+        if (direction.x < 0)
+        {
+            var rot = transform.rotation.eulerAngles;
+            rot.y = 0;
+            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(rot));
+        }
+        else
+        {
+            var rot = transform.rotation.eulerAngles;
+            rot.y = -180;
+            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(rot));
+        }
+        if (_shootTrigger && _target && (_target.transform.position - transform.position).magnitude >= 5)
+        {
+
+            _rigidbody2D.MovePosition(transform.position + direction * Velocity * Time.fixedDeltaTime);
+        }
     }
 
     private void ShootLogic()
