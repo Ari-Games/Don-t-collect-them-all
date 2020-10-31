@@ -4,7 +4,15 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public int Health { get; private set; }
+    [SerializeField] private int health;
+    public int Health 
+    {
+        get { return health; }
+        private set 
+        {
+            health = value;
+        }
+    }
     void Start()
     {
         Health = 100;
