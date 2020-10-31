@@ -26,6 +26,7 @@ namespace Assets.Ari.Ari_Scripts.Player
                 if (TryGetComponent<Damageable>(out playerHealth))
                 {
                     playerHealth.Damage(-10);
+                    Destroy(collision.gameObject);
                 }
             }
             if (collision.gameObject.CompareTag("DeathMushroom") && Input.GetKeyDown(KeyCode.E))
@@ -34,15 +35,18 @@ namespace Assets.Ari.Ari_Scripts.Player
                 if (TryGetComponent<Damageable>(out playerHealth))
                 {
                     playerHealth.Damage(10);
+                    Destroy(collision.gameObject);
                 }
             }
             if (collision.gameObject.CompareTag("EnergyMushroom") && Input.GetKeyDown(KeyCode.E))
             {
                 mushroomAddiction?.AddAddiction(0.1f);
+                Destroy(collision.gameObject);
             }
             if (collision.gameObject.CompareTag("EnergyTakeMushroom") && Input.GetKeyDown(KeyCode.E))
             {
                 mushroomAddiction?.AddAddiction(-0.1f);
+                Destroy(collision.gameObject);
             }
         }
 

@@ -11,7 +11,8 @@ public class Tutorial6 : MonoBehaviour
     [SerializeField] private string textTask2;
     [SerializeField] private IsCollision trigger;
     [SerializeField] private int seconds;
-
+    [SerializeField] private GameObject[] ui;
+    [SerializeField] private GameObject wall;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -32,7 +33,9 @@ public class Tutorial6 : MonoBehaviour
     {
         task.text = textTask2;
         yield return new WaitForSeconds(seconds);
-        Destroy(this.gameObject);
+        foreach (var elem in ui)
+            elem.SetActive(true);
         task.text = "";
+        Destroy(this.gameObject);
     }
 }
