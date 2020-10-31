@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2529296138199367562}
   - component: {fileID: 2529296138199367560}
   - component: {fileID: 937006026329231021}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fire Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 506306232517010294}
   - component: {fileID: 3886741116466704407}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
