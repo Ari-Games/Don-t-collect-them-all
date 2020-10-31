@@ -4,19 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tutorial : MonoBehaviour
+public class Tutorial2 : MonoBehaviour
 {
     [SerializeField] private Text task;
     [SerializeField] private string textTask;
+    [SerializeField] private FlyStatus fly;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
+        {
             task.text = textTask;
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && GWorld.IsOurWorld())
+        if (collision.gameObject.CompareTag("Player") && fly.flyBarValue <= 0.01)
+        {
             Destroy(this.gameObject);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
