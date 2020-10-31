@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Lost Crypt/Scenes/Main.unity
-    guid: a2b58d8c2e473104380da39b8eb2a7e5
+    path: Assets/Scenes/MainMenu.unity
+    guid: 5eb196051bbfe1143bc3bb40b2e9276b
   - enabled: 1
     path: Assets/Scenes/TutorialLevel 1.unity
     guid: 62813a6e26d82244b8adc8e2214c51ec
+  - enabled: 1
+    path: Assets/Lost Crypt/Scenes/Main.unity
+    guid: a2b58d8c2e473104380da39b8eb2a7e5
   m_configObjects: {}
