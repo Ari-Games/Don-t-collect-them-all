@@ -9,6 +9,10 @@ TagManager:
   - Shield
   - Mushroom
   - Enemy
+  - EnergyMushroom
+  - EnergyTakeMushroom
+  - HealthMushroom
+  - DeathMushroom
   layers:
   - Default
   - TransparentFX

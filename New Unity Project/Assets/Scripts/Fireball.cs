@@ -35,7 +35,7 @@ public class Fireball : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == this.gameObject)
+        if (collision.tag == "Enemy")
         {
             return;
         }
@@ -46,10 +46,10 @@ public class Fireball : MonoBehaviour
 
     private void TakeHealth(GameObject player)
     {
-        var pl = player.GetComponent<Damageable>();
-        if (pl!=null)
+        Damageable playerHealth;       
+        if (player.TryGetComponent<Damageable>(out playerHealth))
         {
-            pl.Damage(10);
+            playerHealth.Damage(10);
         }
     }
 

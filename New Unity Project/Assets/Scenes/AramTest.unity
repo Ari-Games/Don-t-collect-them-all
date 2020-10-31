@@ -2532,10 +2532,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a7512b79a145342874a67f151d4caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   explosion: {fileID: 55452533245739975, guid: 3bbea527ccccd75419bf6ff810103be7, type: 3}
   ourExplosion: {fileID: 7843858214272604576, guid: e561fb84f9bfb6f429b823fe8571cc19,
     type: 3}
   pointCreate: {fileID: 6483633598562851121}
+  battlePanel: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &363296077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2582,17 +2585,17 @@ PrefabInstance:
     - target: {fileID: 6372339726509719846, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[2].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339726509719846, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[3].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339726509719846, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[4].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339726509719847, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
@@ -2692,7 +2695,7 @@ PrefabInstance:
     - target: {fileID: 6372339727032943130, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[0].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339727032943131, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
@@ -2727,7 +2730,7 @@ PrefabInstance:
     - target: {fileID: 6372339727176229870, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[1].m_CornerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6372339727176229871, guid: 7b1d9d3c1cec0f5419bd2b1ea4481e3c,
         type: 3}
@@ -4147,7 +4150,7 @@ PrefabInstance:
         type: 3}
       propertyPath: flyStatus
       value: 
-      objectReference: {fileID: 4937423832929383281}
+      objectReference: {fileID: 0}
     - target: {fileID: 4754276825979746982, guid: 64ad060feb57686429c58c8f650d40ec,
         type: 3}
       propertyPath: bloodBallsController
@@ -24251,6 +24254,11 @@ PrefabInstance:
       propertyPath: bloodPower
       value: 
       objectReference: {fileID: 1857330135}
+    - target: {fileID: 6338666405493992882, guid: ca1758815a61c4b418b61b735b87076f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8217149055578950530, guid: ca1758815a61c4b418b61b735b87076f,
         type: 3}
       propertyPath: m_Name
@@ -24760,7 +24768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4401863855557943038}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.9863777, y: 1.9000034, z: -10}
+  m_LocalPosition: {x: 6.276207, y: 1.9000034, z: -10}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 6483633598562851121}
@@ -25119,18 +25127,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51c5a6374ef7e994ca5f4e1756b55cfa, type: 3}
---- !u!114 &4937423832929383281 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8217149056120502236, guid: ca1758815a61c4b418b61b735b87076f,
-    type: 3}
-  m_PrefabInstance: {fileID: 3930636794129941677}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961210072bd6c2347b3f487564ece390, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5936001830630458556
 MonoBehaviour:
   m_ObjectHideFlags: 0

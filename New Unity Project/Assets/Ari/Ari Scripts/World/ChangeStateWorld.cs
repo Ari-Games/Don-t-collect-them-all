@@ -13,6 +13,7 @@ namespace Assets.Scripts
         [SerializeField] private GameObject ourExplosion = null;
         [SerializeField] private Transform pointCreate = null;
         [SerializeField] private GameObject battlePanel = null;
+        [SerializeField] private PlayerController player= null;
 
         public void Change()
         {
@@ -30,18 +31,22 @@ namespace Assets.Scripts
 
         IEnumerator ChangeToOther()
         {
+            player.enabled = false;   
             yield return new WaitForSeconds(6.0f);
             controller.SetTime(0.9f);
             GWorld.ChangeState();
             battlePanel.SetActive(true);
+            player.enabled = true;
         }
 
         IEnumerator ChangeToOur()
         {
+            player.enabled = false;
             yield return new WaitForSeconds(6.0f);
             controller.SetTime(0);
             GWorld.ChangeState();
             battlePanel.SetActive(false);
+            player.enabled = true;
         }
     }
 }
