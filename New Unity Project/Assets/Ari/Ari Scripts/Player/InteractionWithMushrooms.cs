@@ -36,7 +36,7 @@ public class InteractionWithMushrooms : MonoBehaviour
             Damageable playerHealth;
             if (TryGetComponent<Damageable>(out playerHealth))
             {
-                playerHealth.Damage(-10);
+                playerHealth.Damage(-25);
                 Destroy(collision.gameObject);
             }
         }
