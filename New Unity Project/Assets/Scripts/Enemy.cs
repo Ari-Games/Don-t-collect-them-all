@@ -7,7 +7,7 @@ public abstract class Enemy : MonoBehaviour
     public int Health { get; private set; }
     void Start()
     {
-        
+        Health = 100;
     }
 
     public void PushEnemy(int damage)

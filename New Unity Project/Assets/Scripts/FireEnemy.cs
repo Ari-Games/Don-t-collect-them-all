@@ -8,13 +8,15 @@ public class FireEnemy : Enemy
 {
     float timeOf;
     bool _shootTrigger = false;
-    GameObject _target;
+    
     Rigidbody2D _rigidbody2D;
     [Header("Shoot Settings")]
     [SerializeField] GameObject FireBall;
     [SerializeField] float frequency = 1f;
+    [SerializeField] float ActivateDistance = 10;
     [Header("Enemy Settings")]
     [SerializeField] float Velocity = 2f;
+    [SerializeField] GameObject _target;
     void Start()
     {
         timeOf = Time.time;
@@ -22,7 +24,7 @@ public class FireEnemy : Enemy
     }
     private void FixedUpdate()
     {
-        if (_target && (_target.transform.position - transform.position).magnitude >= 5)
+        if (_shootTrigger &&  _target && (_target.transform.position - transform.position).magnitude >= 5 )
         {
             var direction = (_target.transform.position - transform.position).normalized;
             _rigidbody2D.MovePosition(transform.position + direction*Velocity*Time.fixedDeltaTime);
@@ -30,18 +32,13 @@ public class FireEnemy : Enemy
         
     }
     
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag!="Player")
-        {
-            return;
-        }
-        _target = collision.gameObject;
-        _shootTrigger = true;
-
-    }
+    
     void Update()
     {
+        if ((_target.transform.position - transform.position).magnitude <= ActivateDistance)
+        {
+            _shootTrigger = true;
+        }
         if (_shootTrigger && (timeOf)>= frequency)
         {
             ShootLogic();
