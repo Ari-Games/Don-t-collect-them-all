@@ -11711,6 +11711,8 @@ MonoBehaviour:
   battlePanel: {fileID: 1892940249}
   player: {fileID: 416741628}
   endPanel: {fileID: 770661031}
+  gotoOur: {fileID: 0}
+  gotoOther: {fileID: 0}
 --- !u!4 &780488423
 Transform:
   m_ObjectHideFlags: 0

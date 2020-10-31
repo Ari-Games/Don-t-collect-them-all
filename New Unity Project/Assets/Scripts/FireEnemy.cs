@@ -19,8 +19,6 @@ public class FireEnemy : Enemy
     [SerializeField] GameObject _target;
     [SerializeField] ParticleSystem explosionPrefab;
 
-    [SerializeField] private AudioClip shotClip;
-    [SerializeField] private AudioSource audio;
     void Start()
     {
         timeOf = Time.time;
@@ -71,7 +69,6 @@ public class FireEnemy : Enemy
 
     private void ShootLogic()
     {
-        audio.PlayOneShot(shotClip);
         var ball = Instantiate(FireBall, transform.position, Quaternion.identity).GetComponent<Fireball>();
         Destroy(ball.gameObject, 5f);
         var to = (_target.transform.position - transform.position);
