@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialLevel 1.unity
     guid: 62813a6e26d82244b8adc8e2214c51ec
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Scenes/TutorialLevel 3.unity
+    guid: a14e34bd12f5c3543932f5a5c323e790
+  - enabled: 0
     path: Assets/Lost Crypt/Scenes/Main.unity
     guid: a2b58d8c2e473104380da39b8eb2a7e5
   m_configObjects: {}

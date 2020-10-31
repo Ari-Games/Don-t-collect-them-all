@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-
+using UnityEditor;
 public class Fireball : MonoBehaviour
 {
     Rigidbody2D _rigidbody2D;

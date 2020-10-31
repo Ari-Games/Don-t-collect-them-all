@@ -9,6 +9,8 @@ public class MushroomAddiction : MonoBehaviour
     [SerializeField] float standartAddictionValue = 0.5f;
     [SerializeField] float addictionSpeed = 0.2f;
     [SerializeField] Image addictionImage;
+    [SerializeField] GameObject deathPanel;
+    private bool flag = false;
 
 
 
@@ -17,9 +19,12 @@ public class MushroomAddiction : MonoBehaviour
     {
         if(addictionImage.fillAmount >= 0.95f || addictionImage.fillAmount <= 0.05f)
         {
-            //TODO GAMEOVER
-            print("GAME OVER");
-            return;
+            if (!flag)
+            {
+                flag = true;
+                deathPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
         addictionImage.fillAmount -=Time.deltaTime * addictionSpeed;
         

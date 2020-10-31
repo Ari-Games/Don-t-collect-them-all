@@ -17,6 +17,7 @@ public class FireEnemy : Enemy
     [Header("Enemy Settings")]
     [SerializeField] float Velocity = 2f;
     [SerializeField] GameObject _target;
+    [SerializeField] ParticleSystem explosionPrefab;
     void Start()
     {
         timeOf = Time.time;
@@ -77,6 +78,7 @@ public class FireEnemy : Enemy
 
     public override void Death()
     {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
     

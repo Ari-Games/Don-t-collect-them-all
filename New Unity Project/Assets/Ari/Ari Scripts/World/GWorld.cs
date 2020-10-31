@@ -4,39 +4,41 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime;
 
-namespace Assets.Scripts
+public enum WorldStates
 {
-    public enum WorldStates
+    OurWorld = 1,
+    OtherWorld = 2
+}
+public class GWorld
+{
+    private static GWorld instance;
+
+    public static WorldStates WorldState { get; private set; }
+
+    private GWorld()
     {
-        OurWorld = 1,
-        OtherWorld = 2
+        Reset();
     }
-    public class GWorld
+
+    public static void Reset()
     {
-        private static GWorld instance;
+        WorldState = WorldStates.OtherWorld;
+    }
 
-        public static WorldStates WorldState { get; private set; }
+    public static GWorld getInstance()
+    {
+        if (instance == null)
+            instance = new GWorld();
+        return instance;
+    }
 
-        private GWorld()
-        {
-            Reset();
-        }
+    public static void ChangeState() => WorldState = WorldState == WorldStates.OurWorld ? WorldStates.OtherWorld : WorldStates.OurWorld;
 
-        public static void Reset() => WorldState = WorldStates.OurWorld;
-
-        public static GWorld getInstance()
-        {
-            if (instance == null)
-                instance = new GWorld();
-            return instance;
-        }
-
-        public static void ChangeState() => WorldState = WorldState == WorldStates.OurWorld ? WorldStates.OtherWorld : WorldStates.OurWorld;
-
-        public static bool IsOurWorld()
-        {
-            return WorldState == WorldStates.OurWorld;
-        }
+    public static bool IsOurWorld()
+    {
+        return WorldState == WorldStates.OurWorld;
     }
 }
+
