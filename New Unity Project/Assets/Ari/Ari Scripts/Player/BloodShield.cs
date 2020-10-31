@@ -47,7 +47,7 @@ public class BloodShield : MonoBehaviour
         if(isUsing)
         {
             timer+=Time.deltaTime;
-            if(timer >= cooldown || damageable.HealthPoint <=0)
+            if(timer >= cooldown)
             {
                 isUsing = false;
                 CanUse = true;
@@ -55,6 +55,8 @@ public class BloodShield : MonoBehaviour
                 damageable.HealthPoint = damageable.StandartHP;
                 this.gameObject.SetActive(false);
             }
+            if (damageable.HealthPoint <= 0)
+                this.gameObject.SetActive(false);
         }
     }
 }

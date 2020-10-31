@@ -11,4 +11,10 @@ public class IsCollision : MonoBehaviour
         if (collision.CompareTag("Player"))
             IsTrigger = true;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            IsTrigger = true;
+    }
 }

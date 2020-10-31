@@ -7,7 +7,9 @@ public class Tutorial8 : MonoBehaviour
 {
     [SerializeField] private Text task;
     [SerializeField] private string textTask;
-
+    [SerializeField] private IsCollision key;
+    [SerializeField] private GameObject block;
+    [SerializeField] private GameObject mashroom;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -18,6 +20,10 @@ public class Tutorial8 : MonoBehaviour
 
     private void Update()
     {
-
+        if (key.IsTrigger)
+        {
+            block.SetActive(false);
+            mashroom.SetActive(true);
+        }
     }
 }

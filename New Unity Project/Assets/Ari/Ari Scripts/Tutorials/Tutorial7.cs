@@ -12,6 +12,7 @@ public class Tutorial7 : MonoBehaviour
     [SerializeField] private IsCollision trig1;
     [SerializeField] private IsCollision trig2;
     [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject block;
     private bool isSpawn = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,6 +41,7 @@ public class Tutorial7 : MonoBehaviour
         }
         if (trig2.IsTrigger && isSpawn && enemy.transform.childCount == 0)
         {
+            block.SetActive(false);
             Destroy(this.gameObject);
             task.text = "";
         }
