@@ -11,6 +11,8 @@ public class Tutorial7 : MonoBehaviour
     [SerializeField] private string textTask3;
     [SerializeField] private IsCollision trig1;
     [SerializeField] private IsCollision trig2;
+    [SerializeField] private GameObject enemy;
+    private bool isSpawn = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,6 +32,16 @@ public class Tutorial7 : MonoBehaviour
         if (trig2.IsTrigger)
         {
             task.text = textTask3;
+        }
+        if (trig2.IsTrigger && !isSpawn)
+        {
+            isSpawn = true;
+            enemy.SetActive(true);
+        }
+        if (trig2.IsTrigger && isSpawn && enemy.transform.childCount == 0)
+        {
+            Destroy(this.gameObject);
+            task.text = "";
         }
     }
 
