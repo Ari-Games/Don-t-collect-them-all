@@ -2,7 +2,7 @@
 MMCS Game Jam
 > Грибы меняют реальность. Главной герой умеет летать и стрелять сгустками магии крови. 
 > Зло из параллельного мира пробудилось, и лишь Избранный сможет их остановить. 
-> Погрузись в игровой мир Blood'n'Mushrooms. 
+> Погрузись в игровой мир Blood'n'Mushrooms. [Ссылка на игру (itch.io)](https://arigames.itch.io/the-last-of-wolves)
 #
 ![](https://github.com/Ari-Games/Don-t-collect-them-all/blob/main/bloodnMush_start.jpg)
 ## Здесь ты найдешь:
