@@ -4,7 +4,7 @@ MMCS Game Jam
 > Зло из параллельного мира пробудилось, и лишь Избранный сможет их остановить. 
 > Погрузись в игровой мир Blood'n'Mushrooms. 
 #
-![](https://drive.google.com/file/d/1qk3C0DmNkleE2dyXAhmzYJMK3fZfrxA4/view?usp=sharing)
+![](https://github.com/Ari-Games/Don-t-collect-them-all/blob/main/bloodnMush_start.jpg)
 ## Здесь ты найдешь:
 - уникальную игровую механику
 - интуитивно понятное управление
@@ -17,3 +17,4 @@ MMCS Game Jam
 
 
 Управление: <A> <D> - бег <Shift> - полет <E> - съесть гриб <ЛКМ> - заклинание магии кровии Курсор - выбор цели <ПКМ> - щит
+![](https://github.com/Ari-Games/Don-t-collect-them-all/blob/main/bloodnMush_g.jpg)
